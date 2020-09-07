@@ -47,6 +47,7 @@ public class ReservaController {
 	@PostMapping("/reservar")
 	public ResponseEntity<String> createTutorial(@RequestBody ReservarModel reservar) {
 		try {
+			reservarService.ValidarPrograma(reservar);
 			reservarService.ValidarReseva(reservar);
 		} catch (Exception e) {
 			return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
