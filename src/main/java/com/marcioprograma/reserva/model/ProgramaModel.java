@@ -1,10 +1,13 @@
 package com.marcioprograma.reserva.model;
 
+import java.time.LocalDate;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class ProgramaModel {
 	private String id;
-	private String dataExibicao;
+	private LocalDate dataExibicao;
 	private int quantidade;
 	private int tempo;
 
@@ -19,12 +22,14 @@ public class ProgramaModel {
 	}
 
 	@JsonProperty("data_exibicao")
-	public String getDataExibicao() {
+	@JsonFormat(pattern="dd/MM/yyyy")
+	public LocalDate getDataExibicao() {
 		return dataExibicao;
 	}
 
 	@JsonProperty("data_exibicao")
-	public void setDataExibicao(String value) {
+	@JsonFormat(pattern="dd/MM/yyyy")
+	public void setDataExibicao(LocalDate value) {
 		this.dataExibicao = value;
 	}
 

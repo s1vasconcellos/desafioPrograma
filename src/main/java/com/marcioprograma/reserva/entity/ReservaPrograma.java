@@ -15,7 +15,7 @@ public class ReservaPrograma {
 	private long idReserva;
 	private int quantidade;
 	private int tempo;
-	private String dataExibicao;
+	private LocalDate dataExibicao;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -52,10 +52,10 @@ public class ReservaPrograma {
 	}
 	
 	@Column(name = "data_exibicao",length = 10)
-	public String getDataExibicao() {
+	public LocalDate getDataExibicao() {
 		return dataExibicao;
 	}
-	public void setDataExibicao(String dataExibicao) {
+	public void setDataExibicao(LocalDate dataExibicao) {
 		this.dataExibicao = dataExibicao;
 	}
 	
