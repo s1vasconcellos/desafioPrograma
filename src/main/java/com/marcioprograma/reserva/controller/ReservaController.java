@@ -19,16 +19,20 @@ import com.marcioprograma.reserva.model.ProgramaModel;
 import com.marcioprograma.reserva.model.ReservarModel;
 import com.marcioprograma.reserva.repository.ReservaProgramaRepository;
 import com.marcioprograma.reserva.repository.ReservaRepository;
+import com.marcioprograma.reserva.service.ReservaService;
 
 @RestController
 @RequestMapping("/api")
 public class ReservaController {
-	
+
 	@Autowired
 	private ReservaProgramaRepository reservaProgramaRepository;
-	
+
 	@Autowired
 	private ReservaRepository reservaRepository;
+
+	@Autowired
+	private ReservaService reservarService;
 
 	@GetMapping("/reservas")
 	public ResponseEntity<List<Reserva>> getAllProgramas() {
@@ -39,12 +43,17 @@ public class ReservaController {
 
 		return new ResponseEntity<>(reservas, HttpStatus.OK);
 	}
-	
+
 	@PostMapping("/reservar")
 	public ResponseEntity<String> createTutorial(@RequestBody ReservarModel reservar) {
 		try {
+			reservarService.ValidarReseva(reservar);
+		} catch (Exception e) {
+			return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		try {
 			Reserva r = new Reserva();
-			
+
 			r.setDataReserva(LocalDate.now());
 			r.setRequestId(reservar.getRequestID());
 			reservaRepository.save(r);
@@ -55,16 +64,20 @@ public class ReservaController {
 				rp.setQuantidade(item.getQuantidade());
 				rp.setTempo(item.getTempo());
 				rp.setIdReserva(r.getId());
-				
+
 				reservaProgramaRepository.save(rp);
+				
+				reservarService.ReduzirEstoque(item);
 			}
 			r.setCodigoReserva(String.valueOf(r.getId()));
 			reservaRepository.save(r);
 			
 			
+			
+
 			return new ResponseEntity<>(r.getCodigoReserva(), HttpStatus.CREATED);
 		} catch (Exception e) {
-			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+			return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
 
