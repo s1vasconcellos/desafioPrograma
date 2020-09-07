@@ -27,6 +27,7 @@ public class Reserva {
 		this.id = id;
 	}
 
+	
 	@Column(name = "codigo_reserva",length = 10)
 	public String getCodigoReserva() {
 		return codigoReserva;
@@ -44,7 +45,7 @@ public class Reserva {
         this.dataReserva = dataReserva;
     }
     
-	@Column(name = "request_id",length = 10)
+	@Column(name = "request_id")
 	public UUID getRequestId() {
 		return requestId;
 	}

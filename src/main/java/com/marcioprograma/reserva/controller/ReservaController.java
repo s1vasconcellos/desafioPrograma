@@ -1,10 +1,13 @@
 package com.marcioprograma.reserva.controller;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,6 +30,15 @@ public class ReservaController {
 	@Autowired
 	private ReservaRepository reservaRepository;
 
+	@GetMapping("/reservas")
+	public ResponseEntity<List<Reserva>> getAllProgramas() {
+
+		List<Reserva> reservas = new ArrayList<Reserva>();
+
+		reservaRepository.findAll().forEach(reservas::add);
+
+		return new ResponseEntity<>(reservas, HttpStatus.OK);
+	}
 	
 	@PostMapping("/reservar")
 	public ResponseEntity<String> createTutorial(@RequestBody ReservarModel reservar) {
