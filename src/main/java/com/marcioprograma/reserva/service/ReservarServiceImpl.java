@@ -35,7 +35,7 @@ public class ReservarServiceImpl implements ReservaService {
 		for (ProgramaModel item : reservar.getProgramas()) {
 			List<Estoque> estoques = estoqueRepository.findIdProgramaDataExibicao(item.getID(),item.getDataExibicao());
 			 if(estoques.isEmpty()) {
-				 throw new RuntimeException("“Programa "+ item.getID()+"' não existente. Reserva não pode ser efetuada.");
+				 throw new RuntimeException("“Programa "+ item.getID()+"' não encontrado.");
 			 }
 		}
 	}
