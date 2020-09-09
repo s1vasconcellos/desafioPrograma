@@ -11,3 +11,4 @@
   
 ## questao 9
    Select id_programa, Count(*) from RESERVA_PROGRAMA group by id_programa order by 1 desc; 
+   
