@@ -1,7 +1,7 @@
 # Projetos
 
-  - programaservice --> contem os programas de tv
-  - programareserva --> contem o controle de reserva verificando a existencia do programa de tv no servico programaservice
+  - programaservice --> Servico de programas de tv
+  - programareserva --> Servico de reserva, verificando os programas de tv no servico programaservice
   - api-gateway --> gateway para unificar os micros servicos na porta 8080
   - servermicroservico --> Spring Eureka http://localhost:8761/
 
