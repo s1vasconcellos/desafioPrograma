@@ -4,6 +4,7 @@
   - programareserva --> Servico de reserva, verificando os programas de tv no servico programaservice
   - api-gateway --> gateway para unificar os micros servicos na porta 8080
   - servermicroservico --> Spring Eureka http://localhost:8761/
+  - ProjetoErrado --> antigo
 
 
 ## questao 8
