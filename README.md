@@ -7,7 +7,7 @@
 
 
 ## questao 8
-  Resposta, branch da master. Bug deve ser corrigido mais rapido possivel e nao se misturar a desenvolvimentos não liberados para produção.
+  Resposta- Branch da master. Bug deve ser corrigido mais rapido possivel e nao misturar a correção com desenvolvimentos não liberados.
   
 ## questao 9
    Select id_programa, Count(*) from RESERVA_PROGRAMA group by id_programa order by 1 desc; 
